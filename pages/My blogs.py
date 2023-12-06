@@ -9,8 +9,6 @@ df['category1'] = df.apply(lambda x:x['category1'].split('|'),axis=1)
 df = df.explode('category1')
 grouped = df.groupby(['category1']).agg(list)
 grouped['total'] = grouped['url'].transform(len)
-grouped.at['Other technical','total'] = 0
-grouped.at['Other non technical','total'] = 0
 grouped = grouped.sort_values(by='total',ascending=False)
 for x,y in grouped.iterrows():
     with st.expander(x.upper()):
