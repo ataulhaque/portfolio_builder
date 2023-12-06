@@ -50,7 +50,6 @@ def skill_tab():
 with st.spinner(text="Loading section..."):
     skill_tab()
 
-
 st.subheader('Education 📖')
 
 fig = go.Figure(data=[go.Table(
