@@ -10,3 +10,4 @@ streamlit-player
 typing-extensions
 streamlit_lottie
 trubrics
+streamlit_feedback
