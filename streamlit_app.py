@@ -17,11 +17,28 @@ from graph_builder import *
 #import tensorflow as tf
 from streamlit_player import st_player
 from streamlit_lottie import st_lottie
+from trubrics.integrations.streamlit import FeedbackCollector
+
 
 st.set_page_config(page_title="Ataul Haque's Portfolio",
                    layout="wide",
                    page_icon='👨‍🔬'
                    )
+
+# pip install "trubrics[streamlit]"
+collector = FeedbackCollector(
+    project="default",
+    email=st.secrets.TRUBRICS_EMAIL,
+    password=st.secrets.TRUBRICS_PASSWORD,
+)
+
+collector.st_feedback(
+    component="default",
+    feedback_type="thumbs",
+    model="gpt-3.5-turbo",
+    prompt_id=None,  # see prompts to log prompts and model generations
+    open_feedback_label='[Optional] Provide additional feedback'
+)
 
 def load_lottieurl(url):
     r =requests.get(url)
@@ -140,7 +157,20 @@ pdfFileObj = open('pdfs/CV_Ataul Haque.pdf', 'rb')
 st.sidebar.download_button('download resume',pdfFileObj,file_name='CV_Ataul Haque.pdf',mime='pdf')
 
 
+# pip install "trubrics[streamlit]"
+collector = FeedbackCollector(
+    project="default",
+    email=st.secrets.TRUBRICS_EMAIL,
+    password=st.secrets.TRUBRICS_PASSWORD,
+)
 
+collector.st_feedback(
+    component="default",
+    feedback_type="textbox",
+    model="gpt-3.5-turbo",
+    prompt_id=None,  # see prompts to log prompts and model generations
+    open_feedback_label='[Optional] Provide additional feedback'
+)
         
 
         
