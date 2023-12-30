@@ -18,12 +18,26 @@ from graph_builder import *
 from streamlit_player import st_player
 from streamlit_lottie import st_lottie
 from trubrics.integrations.streamlit import FeedbackCollector
+import google.generativeai as genai
 
 
 st.set_page_config(page_title="Ataul Haque's Portfolio",
                    layout="wide",
                    page_icon='👨‍🔬'
                    )
+
+@st.cache_resource
+def load_model() -> genai.GenerativeModel:
+    """
+    The function `load_model()` returns an instance of the `genai.GenerativeModel` class initialized with the model name
+    'gemini-pro'.
+    :return: an instance of the `genai.GenerativeModel` class.
+    """
+    model = genai.GenerativeModel('gemini-pro')
+    return model
+#CONFIGURATION
+genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
+model = load_model()
 
 # pip install "trubrics[streamlit]"
 collector = FeedbackCollector(
@@ -172,6 +186,33 @@ collector.st_feedback(
     open_feedback_label='[Optional] Provide additional feedback'
 )
         
+# Initialize session state to store chat history
+if "messages" not in st.session_state:
+    st.session_state["messages"] = []
+
+# Display previous messages
+
+for message in st.session_state["messages"]:
+    role = message["role"]
+    content = message["content"]
+    with st.chat_message(role):
+        st.markdown(content)
+
+# Get user prompt
+st.info("Write Your prompt/query below: 👇")
+prompt = st.chat_input("You:")
+
+if prompt:
+    # Append user prompt to chat history
+    st.session_state["messages"].append({"role": "user", "content": prompt})
+
+    # Generate response from Gemini-Pro
+    with st.chat_message("assistant"):
+        response = model.generate_content(prompt)
+        st.markdown(response.text)
+
+        # Append response to chat history
+        st.session_state["messages"].append({"role": "assistant", "content": response})
 
         
         

@@ -11,3 +11,4 @@ typing-extensions
 streamlit_lottie
 trubrics
 streamlit_feedback
+google.generativeai
