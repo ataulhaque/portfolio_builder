@@ -162,7 +162,7 @@ def image_and_status_loader(image_list,index=0):
         
         plot_bar()
         
-st.subheader('Daily routine as AI/ML Researcher')
+st.subheader('Daily routine:')
 st.graphviz_chart(graph)
 
 st.sidebar.caption('Wish to connect?')
