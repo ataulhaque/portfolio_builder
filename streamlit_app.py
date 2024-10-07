@@ -113,10 +113,10 @@ st.write("---")
 st.subheader('Education 📖')
 fig = go.Figure(data=[go.Table(
     header=dict(values=list(info['edu'].columns),
-                fill_color='darkgrey',
+                fill_color='cyan',
                 align='left',height=50,font_size=20),
     cells=dict(values=info['edu'].transpose().values.tolist(),
-               fill_color='cyan',
+               fill_color='darkgrey',
                align='left',height=40,font_size=15))])
 
 fig.update_layout(width=750, height=400)
