@@ -5,10 +5,13 @@ import os
 st.header('My Blogs')
 path = os.path.join(os.getcwd(), 'pdfs', 'my_blogs.csv')  # Improved path handling
 try:
-    df = pd.read_csv(path)
+    df = pd.read_csv(path, encoding='ISO-8859-1')  # Specify encoding to handle special characters
 except FileNotFoundError:
     st.error("The file was not found. Please check the path.")  # Error handling for file read
     st.stop()  # Stop execution if the file is not found
+except UnicodeDecodeError:
+    st.error("There was an error decoding the file. Please check the file encoding.")  # Handle decoding errors
+    st.stop()  # Stop execution if there's a decoding error
 
 # Check if 'category1' exists in the DataFrame
 if 'category1' not in df.columns:
