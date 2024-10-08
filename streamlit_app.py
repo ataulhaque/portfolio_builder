@@ -92,6 +92,30 @@ fig = go.Figure(data=[go.Table(
 fig.update_layout(width=750, height=400)
 st.plotly_chart(fig)
 
+# Certifications Section
+st.subheader('Certifications 🎓')
+certifications = [
+    "Google Cloud Generative AI Certification",
+    "Google Cloud Professional Machine Learning Engineer Certification",
+    "AutoML and Deep Learning",
+    "AI/ML for Geodata Analysis certification course by Indian Space Research Organisation (ISRO)",
+    "ML in Production: From Data Scientist to ML Engineer (Udemy)",
+    "Hands-on approach to AI for real-world applications Programme (IIT Kharagpur)"
+]
+for cert in certifications:
+    st.markdown(f"- {cert}")
+
+# Achievements Section
+st.subheader('Achievements 🏆')
+achievements = [
+    "Awarded multiple Innovation & Spot Awards for automating legacy applications for Deutsche Bank and AT&T.",
+    "Led the Nagios Core to Nagios XI migration, improving system monitoring capabilities.",
+    "Played a key role in AI/ML model deployment for geospatial analysis in collaboration with ISRO.",
+    "Implemented LLM solutions and fine-tuned pre-trained datasets for enterprise AI projects."
+]
+for achievement in achievements:
+    st.markdown(f"- {achievement}")
+
 # Daily Routine Section
 st.subheader('Daily Routine:')
 st.graphviz_chart(graph)
