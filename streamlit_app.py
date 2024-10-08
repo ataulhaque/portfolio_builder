@@ -116,10 +116,6 @@ achievements = [
 for achievement in achievements:
     st.markdown(f"- {achievement}")
 
-# Daily Routine Section
-st.subheader('Daily Routine:')
-st.graphviz_chart(graph)
-
 # Chat Interface
 st.subheader('Chat with Me')
 if "messages" not in st.session_state:
