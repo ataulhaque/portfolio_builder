@@ -31,6 +31,5 @@ streamlit run streamlit_app.py
 * Create requirements.txt. 
 * Push repo to github.
 * Sign in https://streamlit.io/ using the same mail as for github account where code is pushed (for ease)
-* Fill in the info & click deploy on the ![Deployment screen](https://user-images.githubusercontent.com/31255225/147195886-a7f69e07-ac50-4fe4-af3f-48e953c983fa.PNG) 
 
 
