@@ -15,15 +15,6 @@ import google.generativeai as genai
 # Set page configuration
 st.set_page_config(page_title="Ataul Haque's Portfolio", layout="wide", page_icon='👨‍🔬')
 
-@st.cache_resource
-def load_model() -> genai.GenerativeModel:
-    model = genai.GenerativeModel('gemini-pro')
-    return model
-
-# Configure the model
-genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
-model = load_model()
-
 # Load Lottie animation
 def load_lottieurl(url):
     r = requests.get(url)
@@ -111,28 +102,8 @@ achievements = [
     "Awarded multiple Innovation & Spot Awards for automating legacy applications for Deutsche Bank and AT&T.",
     "Led the Nagios Core to Nagios XI migration, improving system monitoring capabilities.",
     "Played a key role in AI/ML model deployment for geospatial analysis in collaboration with ISRO.",
-    "Implemented LLM solutions and fine-tuned pre-trained datasets for enterprise AI projects."
+    "Implemented LLM solutions and fine-tuned pre-trained datasets for enterprise AI projects.",
+    "Founded [Bhadaas.app](https://bhadaas.app/)"
 ]
 for achievement in achievements:
     st.markdown(f"- {achievement}")
-
-# Chat Interface
-st.subheader('Chat with Me')
-if "messages" not in st.session_state:
-    st.session_state["messages"] = []
-
-for message in st.session_state["messages"]:
-    role = message["role"]
-    content = message["content"]
-    with st.chat_message(role):
-        st.markdown(content)
-
-st.info("Write your prompt/query below: 👇")
-prompt = st.chat_input("You:")
-
-if prompt:
-    st.session_state["messages"].append({"role": "user", "content": prompt})
-    with st.chat_message("assistant"):
-        response = model.generate_content(prompt)
-        st.markdown(response.text)
-        st.session_state["messages"].append({"role": "assistant", "content": response})
